@@ -1,0 +1,93 @@
+Sintaxis y Diferencias entre Lenguajes de Programación
+
+Una de las distinciones más fundamentales entre 
+los lenguajes de programación se basa en su sistema 
+de tipos. Esto afecta principalmente en cómo se declaran las variables, ademas de
+cómo se detectan los errores y la en general la flexibilidad del lenguaje.
+Las dos diferenciadoras principales son: tipado estático vs.
+dinámico y tipado fuerte vs. débil.
+
+1. Tipado Estático vs. Dinámico
+
+Tipado Estático:
+En el tipado estático, el tipo de una variable se conoce en tiempo de compilación. 
+Osea, que debes declarar explícitamente el tipo de dato que una variable 
+contendrá como por ejemplo un entero, una cadena o un booleano
+
+Sintaxis (Ejemplo en Java):
+```java
+int edad = 25;
+String nombre = "Juan";
+// No se puede hacer esto:
+// edad = "veinticinco"; // Error de compilación
+```
+
+Ventajas:
+- Se detectan los errores antes de que se compile, por que se marca enseguida, evitando errores en ejecucion
+- Se optimizan mejor los datos por que el compilador los entiende de antemano.
+
+Ejemplos de lenguajes en los que hay tipado estatico: Java, C++, C#, Swift, TypeScript, Go.
+
+Tipado Dinámico:
+En los lenguajes de tipado dinámico, la variable se asigna en tiempo de ejecucion, el interprete lo infiere
+
+Sintaxis (Ejemplo en Python):
+```python
+edad = 25
+nombre = "Juan"
+# Esto es válido:
+edad = "veinticinco" # La variable 'edad' ahora es de tipo cadena
+```
+
+Ventajas:
+- Mayor flexibilidad y prototipado más rápido.
+- Código más conciso y menos verboso.
+
+Ejemplos de lenguajes de tipado dinamico: Python, JavaScript, Ruby, PHP.
+
+2. Tipado Fuerte vs. Débil
+
+Esta distinción se refiere a cuán estricto es un lenguaje con respecto a la mezcla de tipos de datos.
+
+a. Tipado Fuerte:
+Un lenguaje de tipado fuerte no permite que los tipos de datos se mezclen implícitamente. Si quieres combinar diferentes tipos, debes hacerlo explícitamente a través de una conversión (casting).
+
+Sintaxis (Ejemplo en Python - Fuerte y Dinámico):
+```python
+numero = 10
+texto = "5"
+# print(numero + texto) # Esto daría un TypeError
+print(str(numero) + texto) # Conversión explícita: "105"
+print(numero + int(texto)) # Conversión explícita: 15
+```
+
+Ventajas:
+- Previene errores inesperados al forzar al programador a ser explícito sobre las conversiones de tipo.
+- El comportamiento del programa es más predecible.
+
+Ejemplos de lenguajes: Python, Java, C#, Ruby.
+
+b. Tipado Débil:
+Un lenguaje de tipado débil realiza conversiones de tipo implícitas (coerción de tipo) cuando se mezclan diferentes tipos de datos en una operación.
+
+Sintaxis (Ejemplo en JavaScript - Débil y Dinámico):
+```javascript
+let numero = 10;
+let texto = "5";
+console.log(numero + texto); // Coerción implícita: "105" (convierte el número a cadena)
+console.log(numero - texto); // Coerción implícita: 5 (convierte la cadena a número)
+```
+
+Ventajas:
+- Puede ser más conveniente para ciertas operaciones rápidas.
+
+Desventajas:
+- Puede llevar a resultados inesperados y errores difíciles de rastrear.
+
+Ejemplos de lenguajes: JavaScript, PHP, C (en algunos contextos).
+
+Resumen de Combinaciones Comunes:
+- Estático y Fuerte: Java, C#, Swift. (Seguro y predecible)
+- Dinámico y Fuerte: Python, Ruby. (Flexible pero seguro)
+- Estático y Débil: C, C++. (Rendimiento con riesgos)
+- Dinámico y Débil: JavaScript, PHP. (Máxima flexibilidad con riesgo de errores inesperados)

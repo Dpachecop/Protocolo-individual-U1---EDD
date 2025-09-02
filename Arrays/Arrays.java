@@ -1,3 +1,4 @@
+package Arrays;
 import java.util.Scanner;
 
 public class Arrays {
@@ -53,9 +54,7 @@ public class Arrays {
             System.out.println("Ingrese el valor del numero que desea saber");
             int valor = scanner.nextInt();
 
-            if (valor < 0 || valor > primerArreglo.length) {
-
-            }
+        
             boolean t = false;
             for (int i = 0; i < primerArreglo.length; i++) {
                 for (int j = 0; j < primerArreglo.length; j++) {

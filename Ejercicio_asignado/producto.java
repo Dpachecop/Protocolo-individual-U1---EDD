@@ -1,19 +1,62 @@
 package Ejercicio_asignado;
+import java.util.ArrayList;
+import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-public record Producto(String nombre,
-        String descripcion,
-        String[][] inAndOut) {
 
-    public void mostrarRegistros(int numeroIngreso) {
-        System.out.print("Regstro de entradas y salidas" + "\n");
-        for (int i = 0; i < inAndOut.length; i++) {
-            for (int j = 0; j < inAndOut[i].length; j++) {
-                System.out.print(inAndOut[i][numeroIngreso] + "\t");
-             break;
-            }
-            System.out.println();
-          
+
+public class Producto {
+    private String nombre;
+    private int stockActual;
+    private List<String> historialMovimientos;
+
+
+    public Producto(String nombre, int stockInicial) {
+        this.nombre = nombre;
+        this.stockActual = stockInicial;
+        this.historialMovimientos = new ArrayList<>();
+        registrarMovimiento("Creación de producto con stock inicial", stockInicial);
+    }
+
+    //  Aqui se gestiona todo los metodos del stock, 
+    // del producto 
+
+    public void registrarEntrada(int cantidad) {
+        if (cantidad > 0) {
+            this.stockActual += cantidad;
+            registrarMovimiento("Entrada", cantidad);
         }
+    }
 
+    public boolean registrarSalida(int cantidad) {
+        if (cantidad > 0 && cantidad <= this.stockActual) {
+            this.stockActual -= cantidad;
+            registrarMovimiento("Salida", cantidad);
+            return true; 
+        }
+        return false; 
+    }
+
+
+
+    private void registrarMovimiento(String tipo, int cantidad) {
+        String fechaHora = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        String registro = String.format("[%s] %s: %d unidades. Stock resultante: %d", fechaHora, tipo, cantidad, this.stockActual);
+        this.historialMovimientos.add(registro);
+    }
+
+   
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getStockActual() {
+        return stockActual;
+    }
+
+    public List<String> getHistorialMovimientos() {
+        return historialMovimientos;
     }
 }
